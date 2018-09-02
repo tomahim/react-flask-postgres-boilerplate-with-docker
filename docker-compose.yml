@@ -7,11 +7,12 @@ services:
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_USER=user
+      - POSTGRES_USER=root
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=sport_stats
     volumes:
       - './db/init:/docker-entrypoint-initdb.d/'
+      - './db/conf/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf'
 
   flask-api:
     container_name: flask-app
