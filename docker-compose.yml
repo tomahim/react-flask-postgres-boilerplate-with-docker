@@ -3,16 +3,17 @@ version: '3.5'
 services:
 
   db:
-    image: postgres:9.6-alpine
+    image: postgres:10.5
+    container_name: postgres
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=password
       - POSTGRES_DB=sport_stats
+      - POSTGRES_USER=tomabolt
+      - POSTGRES_PASSWORD=password
     volumes:
       - './db/init:/docker-entrypoint-initdb.d/'
-      - './db/conf/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf'
+      # - './conf/pg_hba.conf:/var/lib/postgresql/data/'
 
   flask-api:
     container_name: flask-app
