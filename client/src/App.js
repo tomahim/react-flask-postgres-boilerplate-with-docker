@@ -7,18 +7,18 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-        products: []
+        players: []
     };
   }
 
   componentDidMount() {
     fetch(CONFIG.API_BASE_URL)
         .then(results => results.json())
-        .then(results => this.setState({products: results.products}));
+        .then(players => this.setState({players: players}));
   }
 
   render() {
-    const products = this.state.products.map((product, index) => <li key={index}>{product}</li>);
+    const players = this.state.players.map((player, index) => <li key={index}>{player.firstname} {player.lastname}</li>);
 
     return (
       <div className="App">
@@ -28,7 +28,7 @@ class App extends Component {
         </header>
         <div className="App-intro">
           <ul>
-            {products}
+            {players}
           </ul>
         </div>
       </div>

@@ -5,7 +5,6 @@ declare -A arr
 arr["sharefolder-backend"]="${PWD}/backend"
 arr["sharefolder-client"]="${PWD}/client"
 arr["sharefolder-db-init"]="${PWD}/db/init"
-arr["sharefolder-db-conf"]="${PWD}/db/conf"
 
 for key in ${!arr[@]}; do
     echo ${key} ${arr[${key}]}

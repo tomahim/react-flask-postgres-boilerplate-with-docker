@@ -16,6 +16,7 @@ services:
 
   flask-api:
     container_name: flask-app
+    restart: always
     build:
       context: ./backend/
       dockerfile: Dockerfile
@@ -23,6 +24,8 @@ services:
       - "5000:80"
     volumes:
       - ./backend:/usr/src/app
+    depends_on:
+      - "db"
 
   client:
     container_name: react-app
@@ -35,7 +38,7 @@ services:
     ports:
       - '3000:3000'
     depends_on:
-      - flask-api
+      - "flask-api"
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
