@@ -43,6 +43,4 @@ docker-machine ssh default "sudo mount -t vboxsf -o defaults,uid=`id -u`,gid=`id
 docker-machine ssh default "sudo mkdir -p ${DB_PATH}"
 docker-machine ssh default "sudo mount -t vboxsf -o defaults,uid=`id -u`,gid=`id -g` ${DB_NAME} ${DB_PATH}"
 
-docker-compose stop
-
 docker-compose up --build

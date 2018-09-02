@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { CONFIG } from './config.js';
 
 class App extends Component {
   constructor() {
+    super();
     this.state = {
         products: []
     };
   }
 
   componentDidMount() {
-    fetch('http://192.168.99.100:5000/')
+    fetch(CONFIG.API_BASE_URL)
         .then(results => results.json())
-        .then(products => this.state.setState({products}));
+        .then(results => this.setState({products: results.products}));
   }
 
   render() {
-    const products = this.states.products.map((product, index) => <li key={index}>{product}</li>);
+    const products = this.state.products.map((product, index) => <li key={index}>{product}</li>);
 
     return (
       <div className="App">
