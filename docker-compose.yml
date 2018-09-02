@@ -1,0 +1,41 @@
+version: '3.5'
+
+services:
+
+  db:
+    image: postgres:9.6-alpine
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=sport_stats
+    volumes:
+      - './db/init:/docker-entrypoint-initdb.d/'
+
+  flask-api:
+    container_name: flask-app
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    volumes:
+      - ./backend:/usr/src/app
+
+  client:
+    container_name: react-app
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    volumes:
+      - './client:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - '3000:3000'
+    depends_on:
+      - flask-api
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - HOST_URL=http://192.168.99.100:5000
