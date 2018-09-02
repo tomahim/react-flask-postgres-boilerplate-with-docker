@@ -13,7 +13,6 @@ services:
       - POSTGRES_PASSWORD=password
     volumes:
       - './db/init:/docker-entrypoint-initdb.d/'
-      # - './conf/pg_hba.conf:/var/lib/postgresql/data/'
 
   flask-api:
     container_name: flask-app
