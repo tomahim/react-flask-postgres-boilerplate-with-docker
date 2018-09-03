@@ -9,8 +9,8 @@ services:
       - '5432:5432'
     environment:
       - POSTGRES_DB=sport_stats
-      - POSTGRES_USER=tomabolt
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
     volumes:
       - './db/init:/docker-entrypoint-initdb.d/'
 

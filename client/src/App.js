@@ -18,19 +18,14 @@ class App extends Component {
   }
 
   render() {
-    const players = this.state.players.map((player, index) => <li key={index}>{player.firstname} {player.lastname}</li>);
+    const players = this.state.players.map((player, index) => <li key={index}>{player.lastname} {player.firstname}</li>);
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React!</h1>
-        </header>
-        <div className="App-intro">
+      <div>
+          <h1>Players list</h1>
           <ul>
             {players}
           </ul>
-        </div>
       </div>
     );
   }
