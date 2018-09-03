@@ -15,7 +15,7 @@ services:
       - './db/init:/docker-entrypoint-initdb.d/'
 
   flask-api:
-    container_name: flask-app
+    container_name: app-app
     restart: always
     build:
       context: ./backend/

@@ -4,12 +4,13 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base, DeclarativeMeta
 from sqlalchemy.orm import sessionmaker
+from .config import Config
 
 db = SQLAlchemy()
 
 Base = declarative_base()
 
-engine = create_engine('postgresql+psycopg2://tomabolt:password@192.168.99.100/sport_stats')
+engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
 
 Session = sessionmaker(bind=engine, autoflush=False)
 

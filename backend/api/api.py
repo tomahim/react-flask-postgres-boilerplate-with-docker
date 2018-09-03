@@ -3,6 +3,7 @@ from flask_restful import Resource, Api
 
 from .models import Session, to_dict, Player as PlayerModel
 
+
 api = Api()
 
 class Player(Resource):
