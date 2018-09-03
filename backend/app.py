@@ -17,8 +17,10 @@ def register_extensions(app):
     api.init_app(app)
     db.init_app(app)
 
+app = create_app(Config)
+
 
 # Run the application
-if __name__ == '__main__':
-    app = create_app(Config)
-    app.run(host='0.0.0.0', port=80, debug=True, threaded=True)
+# if __name__ == '__main__':
+#     app = create_app(Config)
+#     app.run(host='0.0.0.0', port=80, debug=True, threaded=True)

@@ -1,20 +1,11 @@
 import json
 
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base, DeclarativeMeta
-from sqlalchemy.orm import sessionmaker
-from .config import Config
+from sqlalchemy.ext.declarative import DeclarativeMeta
 
 db = SQLAlchemy()
 
-Base = declarative_base()
-
-engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
-
-Session = sessionmaker(bind=engine, autoflush=False)
-
-class Player(Base):
+class Player(db.Model):
     __tablename__ = 'players'
     firstname = db.Column(db.String(100), nullable=False, primary_key=True)
     lastname = db.Column(db.String(100), nullable=False)
@@ -30,8 +21,9 @@ def to_dict(obj):
             data = obj.__getattribute__(field)
             try:
                 json.dumps(data)  # this will fail on non-encodable values, like other classes
-                fields[field] = data
+                if data is not None:
+                    fields[field] = data
             except TypeError:
-                fields[field] = None
+                pass
         # a json-encodable dict
         return fields
